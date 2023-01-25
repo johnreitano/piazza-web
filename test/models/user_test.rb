@@ -1,6 +1,6 @@
 class UserTest < ActiveSupport::TestCase
   test "requires a name" do
-    @user = User.new(name: "", email: "johndoe@example.com", password: "password")
+    @user = User.new(name: "", email: "johndoe@example.com", password: "password", password_confirmation: "password")
     assert_not @user.valid?
 
     @user.name = "John"
@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "requires a valid email" do
-    @user = User.new(name: "John", email: "", password: "password")
+    @user = User.new(name: "John", email: "", password: "password", password_confirmation: "password")
     assert_not @user.valid?
 
     @user.email = "invalid"
@@ -22,7 +22,8 @@ class UserTest < ActiveSupport::TestCase
     @existing_user = User.create(
       name: "John",
       email: "jd@example.com",
-      password: "password"
+      password: "password",
+      password_confirmation: "password"
     )
     assert @existing_user.persisted?
 
@@ -34,11 +35,12 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(
       name: "Jane",
       email: "janedoe@example.com",
-      password: ""
+      password: "",
+      password_confirmation: ""
     )
     assert_not @user.valid?
 
-    @user.password = "password"
+    @user.password = @user.password_confirmation = "password"
     assert @user.valid?
 
     max_length =
