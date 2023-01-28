@@ -40,8 +40,9 @@
                 class: "navbar-item" %>
           <hr class="navbar-divider">
           <%= link_to t(".logout"),
-                "#",
-                class: "navbar-item" %>
+                logout_path,
+                class: "navbar-item",
+                data: { turbo_method: :delete } %>
         </div>
       <% end if logged_in? %>
       <%= tag.div class: "navbar-item" do %>
