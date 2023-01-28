@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get sign_up_path
     assert_response :ok
 
-    assert_difference [ "User.count", "Organization.count" ], 1 do
+    assert_difference ["User.count", "Organization.count"], 1 do
       post sign_up_path, params: {
         user: {
           name: "John",
@@ -26,7 +26,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get sign_up_path
     assert_response :ok
 
-    assert_no_difference [ "User.count", "Organization.count" ] do
+    assert_no_difference ["User.count", "Organization.count"] do
       post sign_up_path, params: {
         user: {
           name: "John",
@@ -38,15 +38,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     assert_select "p.is-danger",
-    text:
-      I18n.t("activerecord.errors.models.user.attributes.password.too_short")
+      text:
+        I18n.t("activerecord.errors.models.user.attributes.password.too_short")
   end
 
   test "renders error if passwords don't match" do
     get sign_up_path
     assert_response :ok
 
-    assert_no_difference [ "User.count", "Organization.count" ] do
+    assert_no_difference ["User.count", "Organization.count"] do
       post sign_up_path, params: {
         user: {
           name: "John",
@@ -58,8 +58,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select "p.is-danger",
-    text:
-      I18n.t("activerecord.errors.models.user.attributes.password.confirmation")
+    assert_select "p.is-danger", text: I18n.t("errors.messages.confirmation", attribute: "Password")
   end
 end

@@ -1,0 +1,10 @@
+{
+  "ruby.useLanguageServer": true,
+  "ruby.format": "standard",
+  "editor.formatOnSave": true,
+  "ruby.lint": {
+    "standard": {
+      "useBundler": true
+    }
+  }
+}
