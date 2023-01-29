@@ -58,6 +58,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select "p.is-danger", text: I18n.t("errors.messages.confirmation", attribute: "Password")
+    assert_select "p.is-danger", text: I18n.t("activerecord.errors.messages.confirmation", attribute: "Password")
+  end
+
+  test "can update user details" do
+    @user = users(:jerry)
+    log_in @user
+
+    patch profile_path, params: {
+      user: {
+        name: "Jerry Seinfeld"
+      }
+    }
+
+    assert_redirected_to profile_path
+    assert_equal "Jerry Seinfeld", @user.reload.name
   end
 end

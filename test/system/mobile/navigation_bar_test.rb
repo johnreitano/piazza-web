@@ -19,5 +19,9 @@ module Mobile
 
       assert_current_path login_path
     end
-  end
+
+    test "can log out on mobile" do
+      log_in(users(:jerry))
+      assert_current_path login_pat
+    end end
 end

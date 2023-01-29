@@ -65,4 +65,20 @@ class User::AuthenticationTest < ActiveSupport::TestCase
     @app_session = @user.app_sessions.create
     assert_not @user.authenticate_app_session(@app_session.id, "token")
   end
+
+  test "changing password with valid current password succeeds" do
+    @user = users(:jerry)
+    @user.current_password = "password"
+    @user.password = "password2"
+    @user.password_confirmation = "password2"
+    assert @user.valid?(:password_change)
+  end
+
+  test "changing password with invalid current password fails" do
+    @user = users(:jerry)
+    @user.current_password = "invalid"
+    @user.password = "password2"
+    @user.password_confirmation = "password2"
+    assert_not @user.valid?(:password_change)
+  end
 end

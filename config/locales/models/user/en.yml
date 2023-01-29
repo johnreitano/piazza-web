@@ -4,5 +4,9 @@ en:
       models:
         user:
           attributes:
+            current_password:
+              incorrect_password: invalid
             password:
               too_short: must be at least 8 characters long
+      messages:
+        confirmation: doesn't match password

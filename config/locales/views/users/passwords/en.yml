@@ -1,0 +1,5 @@
+en:
+  users:
+    passwords:
+      update:
+        success: Your password has been changed!

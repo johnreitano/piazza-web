@@ -20,3 +20,7 @@ class ActionDispatch::IntegrationTest
   include AuthenticationHelpers
   include RoutesHelpers
 end
+
+class ActionDispatch::SystemTestCase
+  include SystemAuthenticationHelpers
+end

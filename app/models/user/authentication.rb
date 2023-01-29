@@ -3,11 +3,9 @@ module User::Authentication
 
   included do
     has_secure_password
-    validates :password,
-      presence: true,
-      confirmation: true,
-      length: {minimum: 8}
-    validates :password_confirmation, presence: true
+    attr_accessor :current_password
+    validate :current_password_valid, on: :password_change
+    validates :password, confirmation: true, length: {minimum: 8}, on: [:create, :password_change]
     has_many :app_sessions
   end
 
@@ -22,5 +20,13 @@ module User::Authentication
     app_sessions.find(app_session_id).authenticate_token(token)
   rescue ActiveRecord::RecordNotFound
     nil
+  end
+
+  def current_password_valid
+    password_digest_in_memory = password_digest
+    self.password_digest = attribute_in_database(:password_digest)
+    errors.add(:current_password, :incorrect_password) unless authenticate(current_password)
+  ensure
+    self.password_digest = password_digest_in_memory
   end
 end

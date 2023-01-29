@@ -3,5 +3,19 @@ en:
     new:
       title: Sign up for Piazza
       sign_up: Sign up!
+      login_message: Already got an account?
+      login: Login here.
     create:
       welcome: "Welcome to Piazza, %{name}"
+    show:
+      save_profile: Save changes
+      your_details: Your details
+      change_password: Change your password
+      change_password_button: Change password
+      current_password: Current password
+      new_password: New password
+      new_password_confirmation: New password confirmation
+    update:
+      success: Your changes have been saved!
+    password_change:
+      success: Your password has been changed!
