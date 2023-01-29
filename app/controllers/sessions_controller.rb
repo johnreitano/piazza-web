@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    log_in(@app_session)
+    log_in(@app_session, remember_me)
     flash[:success] = t(".success")
     redirect_to root_path, status: :see_other
   end
@@ -30,6 +30,10 @@ class SessionsController < ApplicationController
   private
 
   def login_params
-    @login_params ||= params.require(:user).permit(:email, :password)
+    @login_params ||= params.require(:user).permit(:email, :password, :remember_me)
+  end
+
+  def remember_me
+    ActiveRecord::Type::Boolean.new.deserialize(login_params[:remember_me])
   end
 end

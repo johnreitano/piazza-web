@@ -26,8 +26,16 @@ class AuthenticateTest < ActionDispatch::IntegrationTest
 
   test "request authenticated by cookie gets valid response" do
     @user.app_sessions.destroy_all
-    log_in(@user)
+    log_in(@user, password: "password", remember_me: true)
+    get edit_authenticate_test_path
 
+    assert_response :ok
+    assert_match(/authenticate_tests#edit/, response.body)
+  end
+
+  test "request authenticated by session gets valid response" do
+    @user.app_sessions.destroy_all
+    log_in(@user, password: "password", remember_me: false)
     get edit_authenticate_test_path
 
     assert_response :ok
@@ -61,5 +69,4 @@ class AuthenticateTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_equal "User: #{@user.id}", response.body
   end
-
 end
