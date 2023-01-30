@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @app_session = @user.app_sessions.create
     log_in(@app_session, false)
 
-    redirect_to root_path,
+    recede_or_redirect_to root_path,
       status: :see_other,
       flash: {success: t(".welcome", name: @user.name)}
   end

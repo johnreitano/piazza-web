@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
     log_in(@app_session, remember_me)
     flash[:success] = t(".success")
-    redirect_to root_path, status: :see_other
+    recede_or_redirect_to root_path, status: :see_other
   end
 
   def destroy
