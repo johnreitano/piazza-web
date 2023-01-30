@@ -23,10 +23,11 @@ module User::Authentication
   end
 
   def current_password_valid
-    password_digest_in_memory = password_digest
-    self.password_digest = attribute_in_database(:password_digest)
-    errors.add(:current_password, :incorrect_password) unless authenticate(current_password)
-  ensure
-    self.password_digest = password_digest_in_memory
+    errors.add(:current_password, :incorrect_password) unless matches_password_in_db?(current_password)
+  end
+
+  def matches_password_in_db?(current_password)
+    digest = attribute_in_database(:password_digest)
+    digest.present? && BCrypt::Password.new(digest).is_password?(current_password)
   end
 end
