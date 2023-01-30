@@ -101,8 +101,6 @@ GEM
     htmlbeautifier (1.4.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    i18n-debug (1.2.0)
-      i18n (< 2)
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
@@ -280,7 +278,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   htmlbeautifier
-  i18n-debug
+  i18n
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
