@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= tag.meta name: "bridge-platform", content: turbo_native_bridge_platform %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "mobile", "data-turbo-track": "reload" if turbo_native_app? %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= render "layouts/head" %>
   </head>
   <body>
     <%= render "shared/navbar" unless turbo_native_app? %>
