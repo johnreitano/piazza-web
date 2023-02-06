@@ -15,10 +15,18 @@ export default class BridgeElement {
     return this.element.getAttribute(`data-bridge-element-${this.platform}`);
   }
 
+  get id() {
+    return this.element.dataset.bridgeElementId;
+  }
+
   toMessage() {
     return {
       type: "render",
-      data: { title: this.title, ...JSON.parse(this.platformData) },
+      data: {
+        title: this.title,
+        id: this.id,
+        ...JSON.parse(this.platformData),
+      },
     };
   }
 }
