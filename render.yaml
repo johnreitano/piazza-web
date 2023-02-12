@@ -24,6 +24,6 @@ envVarGroups:
   - name: domains
     envVars:
       - key: DOMAIN_NAME
-        value: oktryme.com
+        value: piazza.oktryme.com
       - key: OUTBOUND_EMAIL_DOMAIN
         value: oktryme.com
