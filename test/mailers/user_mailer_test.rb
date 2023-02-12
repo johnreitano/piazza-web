@@ -7,10 +7,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "password reset" do
-    email = UserMailer
-      .with(user: @user)
-      .password_reset
-      .deliver_now
+    email = UserMailer.with(user: @user).password_reset("dummy_password_reset_id").deliver_now
 
     assert_match @user.name, email[:to].unparsed_value
     assert_match @user.email, email[:to].unparsed_value

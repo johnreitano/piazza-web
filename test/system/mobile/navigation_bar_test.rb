@@ -22,6 +22,10 @@ module Mobile
 
     test "can log out on mobile" do
       log_in(users(:jerry))
-      assert_current_path login_pat
-    end end
+
+      find(".navbar-burger").click
+      click_link I18n.t("shared.navbar.logout")
+      assert_current_path login_path
+    end
+  end
 end

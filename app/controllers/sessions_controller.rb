@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     flash[:success] = t(".success")
-    redirect_to root_path, status: :see_other
+    redirect_to login_path, status: :see_other
   end
 
   private

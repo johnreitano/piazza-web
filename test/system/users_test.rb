@@ -76,6 +76,6 @@ class UsersTest < ApplicationSystemTestCase
 
   test "can log out on desktop" do
     log_in(users(:jerry))
-    assert_current_path login_pat
+    assert_current_path root_path
   end
 end

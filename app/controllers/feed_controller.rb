@@ -1,5 +1,6 @@
 class FeedController < ApplicationController
-  skip_authentication only: [:show]
+  allow_unauthenticated
+
   def show
   end
 end

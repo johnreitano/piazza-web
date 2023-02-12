@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include PasswordReset
   include Authentication
 
   has_many :memberships, dependent: :destroy

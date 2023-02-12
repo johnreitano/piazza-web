@@ -5,7 +5,7 @@ module User::Authentication
     has_secure_password
     attr_accessor :current_password
     validate :current_password_valid, on: :password_change
-    validates :password, confirmation: true, length: {minimum: 8}, on: [:create, :password_change]
+    validates :password, confirmation: true, length: {minimum: 8}, on: [:create, :password_change, :password_reset]
     has_many :app_sessions
   end
 
