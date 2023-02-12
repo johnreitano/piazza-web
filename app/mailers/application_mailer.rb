@@ -1,6 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
-  default from: "jreitano+piazza-support@gmail.com"
+  default from: "support@#{Rails.application.config.outbound_email_domain}"
 
   layout "mailer"
 end

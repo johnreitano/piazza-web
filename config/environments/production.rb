@@ -57,6 +57,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "piazza_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: 587,
+    user_name: "apikey",
+    password: Rails.application.credentials.sendgrid_api_key,
+    authentication: :login
+  }
+  config.action_mailer.default_url_options = {
+    host: ENV["DOMAIN_NAME"],
+    protocol: "https"
+  }
+  config.outbound_email_domain = ENV["OUTBOUND_EMAIL_DOMAIN"]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
