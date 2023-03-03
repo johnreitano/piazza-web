@@ -30,6 +30,7 @@ module User::PasswordReset
 
   def send_password_reset_email
     UserMailer.with(user: self).password_reset(CGI.escape(password_reset_id)).deliver_now
+    Rails.logger.info "password reset email sent to #{email}"
   end
 
   def password_reset_id
