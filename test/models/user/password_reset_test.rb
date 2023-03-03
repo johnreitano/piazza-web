@@ -34,9 +34,11 @@ class User::PasswordResetTest < ActiveSupport::TestCase
 
   test "retrieving a user with an expired id returns nil" do
     @user.reset_password
+    now = Time.zone.now
     password_reset_id = @user.send(:password_reset_id)
-
-    travel_to 3.hours.from_now
+    travel_to now.advance(hours: 2, seconds: 0)
+    assert_not_nil User.find_by_password_reset_id(password_reset_id)
+    travel_to now.advance(hours: 2, seconds: 1)
     assert_nil User.find_by_password_reset_id(password_reset_id)
   end
 
