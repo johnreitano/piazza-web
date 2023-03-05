@@ -49,7 +49,6 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "premailer-rails", "~> 1.11"
-gem "letter_opener", "~> 1.8"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -64,6 +63,7 @@ group :development do
   gem "i18n"
   # gem "i18n-debug"
   gem "htmlbeautifier"
+  gem "letter_opener", "~> 1.8"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
