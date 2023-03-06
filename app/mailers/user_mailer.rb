@@ -5,4 +5,9 @@ class UserMailer < ApplicationMailer
     @password_reset_id = id
     mail subject: t(".subject")
   end
+
+  def email_verification(id)
+    @email_verification_id = id
+    mail subject: t(".subject")
+  end
 end

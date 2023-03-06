@@ -1,0 +1,10 @@
+<h1><%= t(".heading") %></h1>
+<p>
+  <%= t(".body") %>
+</p>
+<br>
+<div class="center">
+  <%= link_to t(".button"),
+        edit_users_email_verification_url(@email_verification_id),
+        class: "button" %>
+</div>

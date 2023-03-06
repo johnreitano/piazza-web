@@ -16,10 +16,7 @@ class UsersController < ApplicationController
     @organization = Organization.create(members: [@user])
     @app_session = @user.app_sessions.create
     log_in(@app_session, false)
-
-    recede_or_redirect_to root_path,
-      status: :see_other,
-      flash: {success: t(".welcome", name: @user.name)}
+    redirect_to new_users_email_verification_path, status: :see_other
   end
 
   def show

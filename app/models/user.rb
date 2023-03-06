@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include EmailVerification
   include PasswordReset
   include Authentication
 

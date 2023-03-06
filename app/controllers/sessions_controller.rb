@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_authentication only: [:new, :create]
+  skip_email_verification
 
   def new
   end

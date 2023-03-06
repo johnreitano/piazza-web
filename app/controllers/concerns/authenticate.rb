@@ -2,14 +2,14 @@ module Authenticate
   extend ActiveSupport::Concern
 
   included do
-    before_action :authenticate
+    before_action :load_session_info
     before_action :require_login, unless: :logged_in?
     helper_method :logged_in?
   end
 
   class_methods do
     def skip_authentication(**options)
-      skip_before_action :authenticate, options
+      skip_before_action :load_session_info, options
       skip_before_action :require_login, options
     end
 
@@ -45,7 +45,7 @@ module Authenticate
     render "sessions/new", status: :unauthorized
   end
 
-  def authenticate
+  def load_session_info
     Current.app_session = authenticate_using_cookie_or_rails_session
     Current.user = Current.app_session&.user
   end

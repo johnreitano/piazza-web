@@ -8,3 +8,10 @@ en:
         It's valid for 2 hours.
         If you didn't request this, you can safely ignore this email.
       button: Set a new password
+    email_verification:
+      subject: Verify your email with Piazza
+      heading: Verify your email with Piazza
+      body: >
+        Verify your email with Piazza by clocking the link below.
+        It's valid for 2 hours.
+      button: Verify email

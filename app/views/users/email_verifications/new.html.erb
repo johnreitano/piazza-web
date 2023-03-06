@@ -1,0 +1,36 @@
+<%= turbo_frame_tag :email_verification do %>
+  <layout-columns class="columns is-centered">
+    <layout-column class="column box is-5 mt-6 p-5 m-4">
+      <h1 class="title has-text-centered"><%= t(".title") %></h1>
+      <% if @invalid_link %>
+        <%= tag.div \
+              class: "notification is-warning has-text-centered" do %>
+          <br>
+          <p class="is-size-5">
+            <%= t(".invalid_link") %>
+          </p>
+        <% end %>
+      <% else %>
+        <%= tag.div \
+              class: "notification is-success has-text-centered" do %>
+          <br>
+          <p class="is-size-5">
+            <%= t(".link_sent") %>
+          </p>
+        <% end %>
+      <% end%>
+      <%= form_with(
+            url: users_email_verifications_path,
+            method: :post,
+            class: "is-flex is-flex-direction-column"
+          ) do |form| %>
+        <p class="mb-5 is-italic has-text-centered">
+          <%= t(".resend") %>
+        </p>
+        <%= form.submit t(".submit"),
+              class: "button is-primary is-align-self-flex-end
+                mb-3 mt-3" %>
+      <% end %>
+    </layout-column>
+  </layout-columns>
+<% end %>

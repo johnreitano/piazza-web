@@ -16,10 +16,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to new_users_email_verification_path
     follow_redirect!
-    assert_select ".notification.is-success",
-      text: I18n.t("users.create.welcome", name: "John")
+
+    assert_select ".notification.is-success", text: I18n.t("users.email_verifications.new.link_sent")
   end
 
   test "renders errors if input data is invalid" do

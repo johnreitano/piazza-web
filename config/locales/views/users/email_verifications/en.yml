@@ -1,0 +1,14 @@
+en:
+  users:
+    email_verifications:
+      new:
+        title: Verification email
+        invalid_link: Sorry, that link isn't valid. Please try again.
+        link_sent: A verification email has been sent to you. Check your inbox for a link to verify your email address.
+        resend: Click the button below to re-send a verification email
+        submit: Re-send
+      create:
+        success: Your email has been successfully verified!
+        error: Sorry, that link isn't valid. Please try again.
+      edit:
+        success: Email successfully verified!

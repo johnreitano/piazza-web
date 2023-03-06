@@ -7,22 +7,16 @@ class Users::PasswordResetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "creating a password reset sends an email and shows instructions" do
-    post users_password_resets_path, params: {
-      email: @user.email
-    }
-
+    post users_password_resets_path, params: {email: @user.email}
     assert_response :ok
-    assert_select "p",
-      text: I18n.t("users.password_resets.create.message")
+    assert_select "p", text: I18n.t("users.password_resets.create.message")
     assert_emails 1
   end
 
   test "accessing the password reset page with a valid id shows the form" do
     @user.reset_password
-    get edit_users_password_reset_path(
-      CGI.escape(@user.send(:password_reset_id))
-    )
-
+    id = CGI.escape(@user.send(:password_reset_id))
+    get edit_users_password_reset_path(id)
     assert_response :ok
     assert_select "form"
   end
